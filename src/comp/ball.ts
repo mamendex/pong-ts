@@ -31,6 +31,10 @@ class Ball {
         return true;
     }
 
+    /**
+     * Order the ball to keep moving in the current direction and speed
+     * not considering limits or collisions
+     */
     public keepMoving() {
         // componente vertical
         this.pos.y += this.angle; // movemos a bola para cima ou para baixo, de acordo com o angulo
