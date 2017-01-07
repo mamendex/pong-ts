@@ -4,7 +4,6 @@ var gulp = require('gulp');
 var browserSync = require('browser-sync').create();
 var inject = require('gulp-inject');
 var clean = require('gulp-clean');
-//var gnf = require('gulp-name-filter');
 
 var paths = {
     src: "./src",
@@ -80,11 +79,6 @@ function browserSyncInit(baseDir, files) {
 // runs preprocessor tasks before, 
 // and serves the src and .tmp folders
 gulp.task('browser-sync', ['watch'], function () {
-//   return browserSyncInit([paths.tmp, paths.src], [
-//     paths.tmp + '/**/*.css',
-//     paths.tmp + '/**/*.js',
-//     paths.tmp + '/**/*.html'
-//   ]);
 return browserSync.init({
         server: {
             baseDir: [paths.tmp, paths.src]
@@ -96,7 +90,6 @@ return browserSync.init({
 // runs the build task before, 
 // and serves the dist folder
 gulp.task('serve:dist', ['build'], function () {  
-  //return browserSyncInit(paths.distProd);
   return browserSync.init({
         server: {
             baseDir: paths.distProd
