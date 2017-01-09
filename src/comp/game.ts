@@ -1,10 +1,9 @@
 /**
  * Game, the
  */
-class Game {
 
-    protected intervalHandler: any;
-    protected paused: boolean = false;
+class Game extends GameAbstract {
+
     protected context: any;
     protected beingPressed = {
         'upArrow': false,
@@ -32,13 +31,11 @@ class Game {
         },
     ];
     protected timeout = 0;
-    protected tickms: number = 200;
-    private static FPS = 25;
 
     constructor(protected canvas: any) {
+        super();
         console.log("Em game.ts:constructor");
         this.context = canvas.getContext("2d"); // recupera o contexto 2d
-        this.setup();
     }
 
     /**
@@ -68,25 +65,6 @@ class Game {
 
     }
 
-    /**
-     * Let the game begin...
-     * Puts the game loop in an interval, keeping the handler
-     */
-    public start() {
-        // inicio
-        this.intervalHandler = setInterval(() => this.gameLoop(), Game.FPS); // chama a function gameLoop a cada n frames
-    }
-
-    /**
-     * Quits the game
-     * Uses the handler created at :start() to clear the interval running the game loop
-     */
-    public stop() {
-        if (this.intervalHandler) {
-            clearInterval(this.intervalHandler);
-        }
-    }
-
     // callback : Tratamento de botão apertada
     protected keyDown = (e: any) => {
         if (e.keyCode == 38) { // up
@@ -107,33 +85,6 @@ class Game {
             this.beingPressed.upArrow = false; // jogador soltou tecla cima
         } else if (e.keyCode == 40) { // down
             this.beingPressed.downArrow = false; // jogador soltou tecla baixo
-        }
-    }
-
-    /**
-     * Puts the game in pause
-     */
-    public pause() {
-        this.paused = true;
-        console.log("Game paused.");
-    }
-
-    /**
-     * Brings the game back from pause
-     */
-    public continue() {
-        this.paused = false;
-        console.log("Game continuing...");
-    }
-
-    /**
-     * Puts the game in pause or brings the game back from pause`
-     */
-    public togglePause() {
-        if (this.paused) {
-            this.continue();
-        } else {
-            this.pause();
         }
     }
 
@@ -304,7 +255,7 @@ class Game {
     }
 
     // GAME loop
-    protected async gameLoop() {
+    async gameLoop() {
 
         if (!this.paused) {
 
