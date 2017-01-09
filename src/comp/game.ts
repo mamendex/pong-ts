@@ -124,7 +124,7 @@ class Game extends GameAbstract {
 
     protected renderField() {
         this.context.beginPath(); // inicia o modo de desenho
-        this.context.moveTo(this.canvas.width / 2, 0); // posiciona o "lapiz" para desenhar
+        this.context.moveTo(this.canvas.width / 2, 0); // posiciona o para desenhar
         this.context.lineTo(this.canvas.width / 2, this.canvas.height); // faz o "risco" na tela
         this.context.strokeStyle = "#000000"; // cor preta (opcional)
         this.context.stroke(); // aplica o risco na tela
